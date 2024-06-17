@@ -34,7 +34,6 @@
             .blog-content {
                 margin-top: 20px;
             }
-
         </style>
 </head>
 
@@ -77,6 +76,34 @@
                 <%= blog.body %>
             </div>
         </div>
+
+        <div class="container mt-3">
+            <h1>Comments (<%= comments.length %>)</h1>
+            <% if (locals.user) { %>
+            <div class="mb-3">
+                <form action="/blog/comment/<%= blog._id %>" method="post">
+                    <label for="body" class="form-label" >Comment here</label>
+                    <textarea class="form-control" name="content" id="content" aria-describedby="content" rows="3" required></textarea>
+                    <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
+                </form>
+                <% } %>
+            </div>
+            <div class="container mt-3">
+                <% comments.forEach(comment => { %>
+                 <img src="<%= comment.author.profilePictureUrl%>" width="50px"/>
+                 <%= comment.author.fullName%>:
+                 <pre><%= comment.content%></pre>
+                <% }) %>
+            </div>
+
+            
+        </div>
+
+
+
+
+
+
 
         <%- include('./partials/scripts') %>
 </body>

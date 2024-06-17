@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
-const blogSchema = new mongoose.Schema({
-    body: {
+const commentSchema = new mongoose.Schema({
+    content: {
         type: String,
+        required : true
     },
     author:{
         type: mongoose.Types.ObjectId,
@@ -19,6 +20,6 @@ const blogSchema = new mongoose.Schema({
 })
 
 
-const Comment = mongoose.model("Blog", blogSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 
-module.exports = Blog;
+module.exports = Comment;
